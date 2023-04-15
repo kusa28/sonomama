@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>マイクの音を再生する</title>
-  </head>
-  <body>
-    <audio id="player" controls></audio>
-    <script>
-      const player = document.getElementById("player");
-      const audioContext = new AudioContext();
 
-      navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-        const sourceNode = audioContext.createMediaStreamSource(stream);
-        const destinationNode = audioContext.destination;
-        sourceNode.connect(destinationNode);
-        player.srcObject = stream;
-      });
+<head>
+    <title>マイクの音を再生する</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 class="bakadeka">マイクの音を再生</h1>
+    <script>
+        const audioContext = new AudioContext();
+
+        navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+            const sourceNode = audioContext.createMediaStreamSource(stream);
+            const destinationNode = audioContext.destination;
+            sourceNode.connect(destinationNode);
+        });
     </script>
-  </body>
+</body>
+
 </html>
