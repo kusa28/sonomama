@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>マイクの音を再生する</title>
+  </head>
+  <body>
+    <audio id="player" controls></audio>
+    <script>
+      const player = document.getElementById("player");
+      const audioContext = new AudioContext();
+
+      navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+        const sourceNode = audioContext.createMediaStreamSource(stream);
+        const destinationNode = audioContext.destination;
+        sourceNode.connect(destinationNode);
+        player.srcObject = stream;
+      });
+    </script>
+  </body>
+</html>
